@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background-color: beige;
+  --library-color: black;
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.library {
+  height: 500px;
+  width: 500px;
+  background-color: var(--library-color);
+}
+
+.books {
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.book {
+  color: white;
+  margin: 20px 0 0 10px;
+}
