@@ -13,14 +13,46 @@ li {
   list-style-type: none;
 }
 
+legend {
+  text-align: center;
+}
+
+input {
+  margin-top: 5px;
+  padding: 0 5px; 
+  height: 30px;
+}
+
+input[type="checkbox"] {
+  height: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  align-items: center;
+}
+
 body {
-  background-color: var(--background-color);
+  background-color: var(--background-color)
 }
 
 .library {
   height: 500px;
   width: 500px;
   background-color: var(--library-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.new-book {
+  margin: 10px 10px 0 0;
+  aspect-ratio: 1 / 1;
+  font-size: 2rem;
+  background-color: green;
+  align-self: end;
+  color: white;
 }
 
 .books {
@@ -31,4 +63,22 @@ body {
 .book {
   color: white;
   margin: 20px 0 0 10px;
+  border-top: 1px solid grey;
+  background-color: rgb(88, 33, 33);
+}
+
+.book-form {
+  background-color: grey;
+  width: 300px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.hidden {
+  visibility: hidden;
 }

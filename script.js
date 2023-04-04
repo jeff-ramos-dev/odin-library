@@ -13,6 +13,8 @@ function Book(title, author, pages, read = false) {
 const library = [];
 
 const books = document.querySelector('.books');
+const bookForm = document.querySelector('.book-form')
+const addBtn = document.querySelector('.new-book');
 
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', 295);
 const harryPotter = new Book(
@@ -22,6 +24,10 @@ const harryPotter = new Book(
   true
 );
 const theStand = new Book('The Stand', 'Stephen King', 1050);
+
+addBtn.addEventListener('click', () => {
+  bookForm.classList.toggle('hidden')  
+})
 
 function addBookToLibrary(book) {
   const newBook = new Book(book.title, book.author, book.pages, book.read);
