@@ -16,42 +16,47 @@ const library = [];
 const movies = document.querySelector('.movies');
 const movieForm = document.querySelector('.movie-form');
 const addBtn = document.querySelector('.new-movie');
+const overlay = document.querySelector('.layer');
+const submit = document.querySelector('.submit')
 
-const theMatrix = new Movie('The Matrix', 'Wacowski Brothers', 100, 2000, true);
-const shawshankRedemption = new Movie('Shawshank Redepmtion', 'Stephen Spielberg', 160, 1992, true);
-const thePrestige = new Movie('The Prestige', 'Christopher Nolan', 125, 2006, true);
-const theLionKing = new Movie('The Lion King', 'Disney', 90, 1992, true);
 
-addBtn.addEventListener('click', () => {
-  movieForm.classList.toggle('hidden');
-});
-
-function addMovieToLibrary(movie) {
-  const newMovie = new Movie(movie.title, movie.director, movie.runtime, movie.year, movie.watched);
-  library.push(newMovie);
-}
-
-addMovieToLibrary(theMatrix);
-addMovieToLibrary(shawshankRedemption);
-addMovieToLibrary(thePrestige);
-addMovieToLibrary(theLionKing);
-
-function displayLibrary() {
-  for (let i = 0; i < library.length; i++) {
+function updateLibrary(movie) {
     const currentMovie = document.createElement('tr');
     const currentMovieTitle = document.createElement('td');
     const currentMovieDirector = document.createElement('td');
     const currentMovieRuntime = document.createElement('td');
     const currentMovieYear = document.createElement('td');
     const currentMovieWatched = document.createElement('td')
-    currentMovieTitle.textContent = library[i].title;
-    currentMovieDirector.textContent = library[i].director;
-    currentMovieRuntime.textContent = library[i].runtime;
-    currentMovieYear.textContent = library[i].year;
-    currentMovieWatched.textContent = library[i].watched;
+    const currentMovieWatchedCheckbox = document.createElement('input')
+    currentMovieWatchedCheckbox.type = 'checkbox'
+    currentMovieTitle.textContent = movie.title;
+    currentMovieDirector.textContent = movie.director;
+    currentMovieRuntime.textContent = movie.runtime;
+    currentMovieYear.textContent = movie.year;
+    currentMovieWatchedCheckbox.name = movie.title.toLowerCase().split(' ').join('')
+    currentMovieWatchedCheckbox.id = movie.title.toLowerCase().split(' ').join('')
+    currentMovieWatchedCheckbox.checked = movie.watched
     currentMovie.classList.add('movie');
+    currentMovie.appendChild(currentMovieTitle)
+    currentMovie.appendChild(currentMovieDirector)
+    currentMovie.appendChild(currentMovieRuntime)
+    currentMovie.appendChild(currentMovieYear)
+    currentMovie.appendChild(currentMovieWatched)
+    currentMovieWatched.appendChild(currentMovieWatchedCheckbox)
     movies.appendChild(currentMovie);
-  }
+    library.push(currentMovie)
 }
 
-displayLibrary();
+addBtn.addEventListener('click', () => {
+  movieForm.classList.toggle('hidden');
+  overlay.classList.toggle('overlay');
+});
+
+submit.addEventListener('click', (e) => {
+  e.preventDefault()
+  const movie = e.target.form
+  const newMovie = new Movie(movie.title.value, movie.director.value, movie.runtime.value, movie.year.value, movie.watched.value)
+  movieForm.classList.toggle('hidden')
+  overlay.classList.toggle('overlay')
+  updateLibrary(newMovie)
+})

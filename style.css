@@ -49,6 +49,11 @@ input[type='checkbox'] {
   height: 20px;
 }
 
+.overlay {
+  background-color: black;
+  opacity: 0.8;
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -61,31 +66,22 @@ body {
 }
 
 .library {
-  height: 500px;
-  width: 700px;
+  height: 100vh;
+  width: 100%;
   background-color: var(--library-color);
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .new-movie {
   margin: 10px 10px 0 0;
+  height: 40px;
   aspect-ratio: 1 / 1;
   font-size: 2rem;
   background-color: green;
   align-self: end;
   color: white;
-}
-
-.movies {
-  margin-top: 20px;
-  padding: 5px;
-}
-
-.movie {
-  color: white;
-  margin: 20px 0 0 10px;
-  border-bottom: 1px solid grey;
 }
 
 .movie-form {
