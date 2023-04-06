@@ -10,27 +10,77 @@
   </head>
   <body>
     <div class="library">
-      <button class="new-book">+</button>
-      <ul class="books"></ul>
+      <button class="new-movie">+</button>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="5">MOVIES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Title</td>
+            <td>Director</td>
+            <td>Runtime(min)</td>
+            <td>Year</td>
+            <td>Watched?</td>
+          </tr>
+          <tr>
+            <td>The Matrix</td>
+            <td>Wacowski Brothers</td>
+            <td>100</td>
+            <td>2000</td>
+            <td><input type="checkbox" name="matrix" id="matrix"></td>
+          </tr>
+          <tr>
+            <td>Shawshank Redemption</td>
+            <td>Stephen Spielberg</td>
+            <td>160</td>
+            <td>1992</td>
+            <td><input type="checkbox" name="shawshank" id="shawshank"></td>
+          </tr>
+          <tr>
+            <td>The Prestige</td>
+            <td>Christopher Nolan</td>
+            <td>125</td>
+            <td>2006</td>
+            <td><input type="checkbox" name="prestige" id="prestige"></td>
+          </tr>
+          <tr>
+            <td>The Lion King</td>
+            <td>Disney</td>
+            <td>90</td>
+            <td>1992</td>
+            <td><input type="checkbox" name="lionking" id="lionking"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <form action="" method="post" class="book-form">
-      <fieldset class="book-info">
-        <legend>Add New Book</legend>
+    <form action="" method="post" class="movie-form">
+      <fieldset class="movie-info">
+        <legend>Add New Movie</legend>
         <div class="field">
           <label for="title">Title</label>
-          <input type="text" name="title" id="title" placeholder="The Dictionary">
+          <input type="text" name="title" id="title" placeholder="Jaws">
         </div>
         <div class="field">
-          <label for="author">Author</label>
-          <input type="text" name="author" id="author" placeholder="Merriam-Webster">
+          <label for="director">Director</label>
+          <input type="text" name="director" id="director" placeholder="Stephen Spielberg">
         </div>
         <div class="field">
-          <label for="pages">Number of Pages</label>
-          <input type="tel" name="pages" id="pages" placeholder="3000">
+          <label for="runtime">Runtime</label>
+          <input type="tel" name="runtime" id="runtime" placeholder="105">
         </div>
         <div class="field">
-          <label for="read">Have you read it?</label>
-          <input type="checkbox" name="read" id="read" checked>
+          <label for="year">Year</label>
+          <input type="tel" name="year" id="year" placeholder="1988">
+        </div>
+        <div class="field">
+          <label for="watched">Have you seen it?</label>
+          <input type="checkbox" name="watched" id="watched" checked>
+        </div>
+        <div class="field">
+          <button type="submit">Add Movie</button>
         </div>
       </fieldset>
     </form>
