@@ -8,36 +8,11 @@
 :root {
   --background-color: beige;
   --library-color: grey;
-}
-
-table {
-  background-color: white;
-  border: 2px solid black;
-  width: 700px;
-  padding: 5px;
-}
-
-tr,
-th {
-  height: 30px;
-  border-bottom: 1px solid black;
-}
-
-td {
-  align-items: center;
-  height: 30px;
-  padding: 2px 4px;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
-td:nth-of-type(1) {
-  border-left: 1px solid black;
-}
-
-td:nth-of-type(5) {
-  display: flex;
-  justify-content: center;
+  --primary-color: #f70776;
+  --primary-color-medium: #c3195d;
+  --secondary-color: #680747;
+  --accent-color: #004c75;
+  --dark-color: #141010;
 }
 
 li {
@@ -54,13 +29,9 @@ input {
   height: 30px;
 }
 
-input[type='checkbox'] {
-  height: 20px;
-}
-
 .overlay {
   background-color: black;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .field {
@@ -74,29 +45,10 @@ body {
   background-color: var(--background-color);
 }
 
-.library {
-  height: 100vh;
-  width: 100%;
-  background-color: var(--library-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.new-movie {
-  margin: 10px 10px 0 0;
-  height: 40px;
-  aspect-ratio: 1 / 1;
-  font-size: x-large;
-  background-color: green;
-  align-self: end;
-  color: white;
-}
-
 .movie-form {
   width: 300px;
   padding: 30px;
-  background-color: rgb(77, 50, 0);
+  background-color: var(--accent-color);
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -120,13 +72,77 @@ legend {
   margin-bottom: 10px;
   border-radius: 10px;
   color: white;
-  background-color: rgb(1, 70, 70);
-  border-right: 2px solid rgb(47, 47, 51);
-  border-bottom: 2px solid rgb(47, 47, 51);
+  background-color: var(--primary-color);
+  border-right: 2px solid var(--primary-color-medium);
+  border-bottom: 2px solid var(--primary-color-medium);
+}
+
+.cards {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-rows: 50px 1fr;
+  background-color: var(--secondary-color);
+}
+
+.new-movie {
+  justify-self: right;
+  align-self: center;
+  grid-column-start: -1;
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  font-size: x-large;
+  background-color: green;
+  color: white;
+}
+
+.card:nth-of-type(1) {
+  grid-column-start: 1;
+}
+
+.card {
+  width: 300px;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: 4px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-color-medium);
+  justify-content: space-between;
+}
+
+.card-title {
+  align-self: center;
+}
+
+.card-details {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-detail {
+  width: 100%;
+  margin: 20px 10px;
+  font-style: italic;
+  display: flex;
+  justify-content: space-between;
+}
+
+.data {
+  font-style: normal;
 }
 
 /* The switch - the box around the slider */
 .switch {
+  justify-self: end;
+  align-self: end;
+  margin-bottom: 10px;
+  margin-right: 10px;
   position: relative;
   display: inline-block;
   width: 32px;

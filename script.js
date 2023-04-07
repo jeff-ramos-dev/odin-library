@@ -19,50 +19,6 @@ const addBtn = document.querySelector('.new-movie');
 const overlay = document.querySelector('.layer');
 const submit = document.querySelector('.submit')
 
-
-function updateLibrary(movie) {
-    const movieKey = movie.title.toLowerCase().split(' ').join('')
-    const currentMovie = document.createElement('tr');
-    const currentMovieTitle = document.createElement('td');
-    currentMovieTitle.classList.add(movieKey)
-    const currentMovieDirector = document.createElement('td');
-    currentMovieDirector.classList.add(movieKey)
-    const currentMovieRuntime = document.createElement('td');
-    currentMovieRuntime.classList.add(movieKey)
-    const currentMovieYear = document.createElement('td');
-    currentMovieYear.classList.add(movieKey)
-    const currentMovieWatched = document.createElement('td')
-    currentMovieWatched.classList.add(movieKey)
-    const currentMovieWatchedLabel = document.createElement('label')
-    currentMovieWatchedLabel.classList.add('switch')
-    const currentMovieWatchedCheckbox = document.createElement('input')
-    currentMovieWatchedCheckbox.type = 'checkbox'
-    const currentMovieWatchedSlider = document.createElement('span')
-    currentMovieWatchedSlider.classList.add('slider', 'round')
-    currentMovieTitle.textContent = movie.title;
-    currentMovieDirector.textContent = movie.director;
-    currentMovieRuntime.textContent = movie.runtime;
-    currentMovieYear.textContent = movie.year;
-    currentMovieWatchedCheckbox.name = movieKey
-    currentMovieWatchedCheckbox.id = movieKey 
-    currentMovieWatchedCheckbox.checked = movie.watched
-    currentMovie.classList.add('movie');
-    currentMovie.appendChild(currentMovieTitle)
-    currentMovie.appendChild(currentMovieDirector)
-    currentMovie.appendChild(currentMovieRuntime)
-    currentMovie.appendChild(currentMovieYear)
-    currentMovie.appendChild(currentMovieWatched)
-    currentMovieWatched.appendChild(currentMovieWatchedLabel)
-    currentMovieWatchedLabel.appendChild(currentMovieWatchedCheckbox)
-    currentMovieWatchedLabel.appendChild(currentMovieWatchedSlider)
-    movies.appendChild(currentMovie);
-    library[movieKey] = {title: movie.title, director: movie.director, runtime: movie.runtime, year: movie.year, watched: movie.watched}
-    currentMovieWatchedCheckbox.addEventListener('click', e => {
-      const movieName = e.target.name
-      library[movieName].watched = !library[movieName].watched
-    })
-}
-
 addBtn.addEventListener('click', () => {
   movieForm.classList.toggle('hidden');
   overlay.classList.toggle('overlay');
@@ -74,8 +30,74 @@ submit.addEventListener('click', (e) => {
   const newMovie = new Movie(movie.title.value, movie.director.value, movie.runtime.value, movie.year.value, movie.watched.checked)
   movieForm.classList.toggle('hidden')
   overlay.classList.toggle('overlay')
-  updateLibrary(newMovie)
+  addMovieToLibrary(newMovie)
 })
 
+const cards = document.querySelector('.cards')
+
+function addMovieToLibrary(movie) {
+  const movieKey = movie.title.toLowerCase().split(' ').join('')
+  const card = document.createElement('div')
+  card.classList.add('card')
+  const heading = document.createElement('h2')
+  heading.classList.add('card-title')
+  const details = document.createElement('div')
+  details.classList.add('card-details')
+  const directorDiv = document.createElement('div')
+  directorDiv.classList.add('card-detail')
+  const directorPrompt = document.createElement('p')
+  directorPrompt.classList.add('prompt')
+  const director = document.createElement('p')
+  director.classList.add('data')
+  const runtimeDiv = document.createElement('div')
+  runtimeDiv.classList.add('card-detail')
+  const runtimePrompt = document.createElement('p')
+  runtimePrompt.classList.add('prompt')
+  const runtime = document.createElement('p')
+  runtime.classList.add('data')
+  const yearDiv = document.createElement('div')
+  yearDiv.classList.add('card-detail')
+  const yearPrompt = document.createElement('p')
+  yearPrompt.classList.add('prompt')
+  const year = document.createElement('p')
+  year.classList.add('data')
+  const watchedLabel = document.createElement('label')
+  watchedLabel.classList.add('switch')
+  const watchedCheckbox = document.createElement('input')
+  watchedCheckbox.type = 'checkbox'
+  const watchedSlider = document.createElement('span')
+  watchedSlider.classList.add('slider', 'round')
+
+  heading.textContent = movie.title
+  directorPrompt.textContent = 'Directed By:'
+  director.textContent = movie.director
+  runtimePrompt.textContent = 'Runtime(min):'
+  runtime.textContent = movie.runtime
+  yearPrompt.textContent = 'Released:'
+  year.textContent = movie.year
+  // watchedLabel.textContent = "Watched?"
+  watchedCheckbox.checked = movie.watched
+  cards.appendChild(card)
+  card.appendChild(heading)
+  card.appendChild(details)
+  details.appendChild(directorDiv)
+  directorDiv.appendChild(directorPrompt)
+  directorDiv.appendChild(director)
+  details.appendChild(runtimeDiv)
+  runtimeDiv.appendChild(runtimePrompt)
+  runtimeDiv.appendChild(runtime)
+  details.appendChild(yearDiv)
+  yearDiv.appendChild(yearPrompt)
+  yearDiv.appendChild(year)
+  card.appendChild(watchedLabel)
+  watchedLabel.appendChild(watchedCheckbox)
+  watchedLabel.appendChild(watchedSlider)
+
+  watchedCheckbox.addEventListener('click', (e) => {
+    library[movieKey].watched = !library[movieKey].watched
+    watchedCheckbox.checked = library[movieKey].watched
+  })
+}
+
 const theMatrix = new Movie('The Matrix', 'The Wachowski Brothers', 136, 1999, true)
-updateLibrary(theMatrix)
+addMovieToLibrary(theMatrix)
