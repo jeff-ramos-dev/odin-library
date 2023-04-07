@@ -71,7 +71,7 @@ addBtn.addEventListener('click', () => {
 submit.addEventListener('click', (e) => {
   e.preventDefault()
   const movie = e.target.form
-  const newMovie = new Movie(movie.title.value, movie.director.value, movie.runtime.value, movie.year.value, movie.watched.value)
+  const newMovie = new Movie(movie.title.value, movie.director.value, movie.runtime.value, movie.year.value, movie.watched.checked)
   movieForm.classList.toggle('hidden')
   overlay.classList.toggle('overlay')
   updateLibrary(newMovie)
