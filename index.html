@@ -9,27 +9,12 @@
     <title>Library</title>
   </head>
   <body>
+    <button class="new-movie">+</button>
     <div class="layer">
-      <div class="library">
-        <button class="new-movie">+</button>
-        <table>
-          <thead>
-            <tr>
-              <th colspan="5">MOVIES</th>
-            </tr>
-          </thead>
-          <tbody class="movies">
-            <tr>
-              <td>Title</td>
-              <td>Director</td>
-              <td>Runtime(min)</td>
-              <td>Year</td>
-              <td>Watched?</td>
-            </tr>
-            
-          </tbody>
-        </table>
+      <div class="heading">
+        <h1>MOVIES</h1>
       </div>
+      <div class="cards"></div>
     </div>
     <form action="" method="post" class="movie-form hidden" id="form">
       <fieldset class="movie-info">
@@ -52,7 +37,7 @@
         </div>
         <div class="field">
           <label for="watched">Have you seen it?</label>
-          <input type="checkbox" name="watched" id="watched" checked>
+          <input type="checkbox" name="watched" id="watched">
         </div>
         <div class="field">
           <button type="submit" class="submit">Add Movie</button>
