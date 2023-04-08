@@ -6,13 +6,13 @@
 }
 
 :root {
-  --background-color: beige;
+  --background-color: #E8E2E2;
   --library-color: grey;
-  --primary-color: #f70776;
-  --primary-color-medium: #c3195d;
-  --secondary-color: #680747;
-  --accent-color: #004c75;
-  --dark-color: #141010;
+  --primary-color: #5D3891;
+  --primary-color-medium: #452a6b;
+  --accent-color: #F99417;
+  --secondary-color: #F5F5F5;
+  --dark-color: #27183d;
 }
 
 li {
@@ -42,13 +42,23 @@ input {
 }
 
 body {
-  background-color: var(--background-color);
+  background-color: var(--dark-color);
+}
+
+.heading {
+  padding: 25px;
+  color: white;
+  display: grid;
+  place-items: center;
+  background-color: var(--primary-color);
 }
 
 .movie-form {
   width: 300px;
   padding: 30px;
-  background-color: var(--accent-color);
+  background-color: var(--dark-color);
+  border-radius: 10px;
+  border: 4px solid var(--primary-color);
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -59,6 +69,10 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+fieldset {
+  border: 2px solid var(--primary-color);
 }
 
 .movie-form label,
@@ -77,25 +91,39 @@ legend {
   border-bottom: 2px solid var(--primary-color-medium);
 }
 
+.layer {
+  display: flex;
+  flex-direction: column;
+}
+
 .cards {
-  width: 100vw;
-  height: 100vh;
+  flex: 1;
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-template-rows: 50px 1fr;
-  background-color: var(--secondary-color);
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 1fr;
+  place-items: start;
+  background-color: var(--dark-color);
 }
 
 .new-movie {
-  justify-self: right;
-  align-self: center;
-  grid-column-start: -1;
+  position: fixed;
+  top: 20px;
+  right: 20px;
   height: 40px;
   aspect-ratio: 1 / 1;
   font-size: x-large;
-  background-color: green;
+  background-color: var(--accent-color);
   color: white;
+  border: none;
+  border-radius: 100%;
+  box-shadow: 0px 0px 4px black;
+}
+
+.new-movie:hover {
+  background-color: #e27c00;
+  box-shadow: 0 0 8px black;
 }
 
 .card:nth-of-type(1) {
@@ -103,19 +131,28 @@ legend {
 }
 
 .card {
-  width: 300px;
+  position: relative;
+  width: 220px;
   aspect-ratio: 1 / 1;
+  color: white;
   border-radius: 10px;
   padding: 10px 20px;
-  border: 4px solid var(--primary-color);
+  border: 4px solid var(--dark-color);
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-color-medium);
+  background-color: grey; 
   justify-content: space-between;
 }
 
+.watched {
+  background-color: var(--primary-color-medium);
+  border: 4px solid var(--primary-color);
+}
+
+
 .card-title {
   align-self: center;
+  text-align: center;
 }
 
 .card-details {
@@ -131,10 +168,32 @@ legend {
   font-style: italic;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid var(--secondary-color)
+}
+
+.card-detail > p:nth-of-type(2) {
+  text-align: right;
+}
+
+.prompt:last-of-type {
+  font-size: 12px;
+  font-style: italic;
+  transform: translateX(-140px) translateY(4px);
 }
 
 .data {
   font-style: normal;
+  min-width: 10px;
+  padding-right: 2px;
+}
+
+.bottom-border {
+  position: absolute;
+  height: 1px;
+  width: 65%;
+  background-color: var(--secondary-color);
+  bottom: 20px;
+  left: 20px;
 }
 
 /* The switch - the box around the slider */
@@ -142,7 +201,6 @@ legend {
   justify-self: end;
   align-self: end;
   margin-bottom: 10px;
-  margin-right: 10px;
   position: relative;
   display: inline-block;
   width: 32px;
@@ -182,11 +240,11 @@ legend {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: var(--accent-color);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px var(--accent-color);
 }
 
 input:checked + .slider:before {

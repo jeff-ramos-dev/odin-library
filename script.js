@@ -1,4 +1,4 @@
-function Movie(title, director, runtime, year, watched = false) {
+function Movie(title, director, runtime, year, watched=false) {
   this.title = title;
   this.runtime = runtime
   this.director = director;
@@ -7,38 +7,32 @@ function Movie(title, director, runtime, year, watched = false) {
 
   Movie.prototype.info = () =>
     `${this.title} by ${this.director}, ${this.runtime} minutes, released ${year}, ${
-      watched ? 'watched' : 'not not watched yet'
+      watched ? 'watched' : 'not watched yet'
     }`;
 }
 
 const library = {};
 
-const movies = document.querySelector('.movies');
 const movieForm = document.querySelector('.movie-form');
 const addBtn = document.querySelector('.new-movie');
 const overlay = document.querySelector('.layer');
 const submit = document.querySelector('.submit')
-
-addBtn.addEventListener('click', () => {
-  movieForm.classList.toggle('hidden');
-  overlay.classList.toggle('overlay');
-});
-
-submit.addEventListener('click', (e) => {
-  e.preventDefault()
-  const movie = e.target.form
-  const newMovie = new Movie(movie.title.value, movie.director.value, movie.runtime.value, movie.year.value, movie.watched.checked)
-  movieForm.classList.toggle('hidden')
-  overlay.classList.toggle('overlay')
-  addMovieToLibrary(newMovie)
-})
-
 const cards = document.querySelector('.cards')
 
 function addMovieToLibrary(movie) {
   const movieKey = movie.title.toLowerCase().split(' ').join('')
+  library[movieKey] = {
+    title: movie.title,
+    director: movie.director,
+    runtime: movie.runtime,
+    year: movie.year,
+    watched: movie.watched
+  }
   const card = document.createElement('div')
   card.classList.add('card')
+  if (movie.watched) {
+    card.classList.add('watched')
+  } 
   const heading = document.createElement('h2')
   heading.classList.add('card-title')
   const details = document.createElement('div')
@@ -63,20 +57,25 @@ function addMovieToLibrary(movie) {
   year.classList.add('data')
   const watchedLabel = document.createElement('label')
   watchedLabel.classList.add('switch')
+  const watchedPrompt = document.createElement('p')
+  watchedPrompt.classList.add('prompt')
   const watchedCheckbox = document.createElement('input')
   watchedCheckbox.type = 'checkbox'
   const watchedSlider = document.createElement('span')
   watchedSlider.classList.add('slider', 'round')
+  const bottomBorder = document.createElement('div')
+  bottomBorder.classList.add('bottom-border')
 
   heading.textContent = movie.title
   directorPrompt.textContent = 'Directed By:'
   director.textContent = movie.director
-  runtimePrompt.textContent = 'Runtime(min):'
-  runtime.textContent = movie.runtime
+  runtimePrompt.textContent = 'Runtime:'
+  runtime.textContent = `${movie.runtime} min`
   yearPrompt.textContent = 'Released:'
   year.textContent = movie.year
-  // watchedLabel.textContent = "Watched?"
+  watchedPrompt.textContent = 'Watched?'
   watchedCheckbox.checked = movie.watched
+
   cards.appendChild(card)
   card.appendChild(heading)
   card.appendChild(details)
@@ -90,14 +89,38 @@ function addMovieToLibrary(movie) {
   yearDiv.appendChild(yearPrompt)
   yearDiv.appendChild(year)
   card.appendChild(watchedLabel)
+  watchedLabel.appendChild(watchedPrompt)
   watchedLabel.appendChild(watchedCheckbox)
   watchedLabel.appendChild(watchedSlider)
+  card.appendChild(bottomBorder)
 
-  watchedCheckbox.addEventListener('click', (e) => {
+  heading.contentEditable = true
+  director.contentEditable = true
+  runtime.contentEditable = true
+  year.contentEditable = true
+
+  watchedCheckbox.addEventListener('click', () => {
     library[movieKey].watched = !library[movieKey].watched
     watchedCheckbox.checked = library[movieKey].watched
+    card.classList.toggle('watched') 
   })
 }
 
+addBtn.addEventListener('click', () => {
+  movieForm.classList.toggle('hidden');
+  overlay.classList.toggle('overlay');
+  submit.focus();
+});
+
+submit.addEventListener('click', (e) => {
+  e.preventDefault()
+  const movie = e.target.form
+  const newMovie = new Movie(movie.title.value ? movie.title.value : 'TITLE', movie.director.value ? movie.director.value : 'DIRECTOR', movie.runtime.value ? `${movie.runtime.value} min` : 'RUNTIME', movie.year.value ? movie.year.value : 'YEAR', movie.watched.checked)
+  movieForm.classList.toggle('hidden')
+  overlay.classList.toggle('overlay')
+  addMovieToLibrary(newMovie)
+})
+
 const theMatrix = new Movie('The Matrix', 'The Wachowski Brothers', 136, 1999, true)
+
 addMovieToLibrary(theMatrix)
