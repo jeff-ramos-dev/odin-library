@@ -99,10 +99,54 @@ function addMovieToLibrary(movie) {
   runtime.contentEditable = true
   year.contentEditable = true
 
+  heading.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      director.focus()
+    }
+  }) 
+
+  director.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      runtime.focus()
+    }
+  })
+
+  runtime.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      year.focus()
+    }
+  })
+
+  year.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      e.target.blur()
+      watchedCheckbox.focus()
+      watchedSlider.classList.add('selected')
+    }
+  })
+
+  watchedCheckbox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      library[movieKey].watched = !library[movieKey].watched
+      watchedCheckbox.checked = library[movieKey].watched
+      card.classList.toggle('watched')
+    }
+  })
+
   watchedCheckbox.addEventListener('click', () => {
     library[movieKey].watched = !library[movieKey].watched
     watchedCheckbox.checked = library[movieKey].watched
     card.classList.toggle('watched') 
+    watchedSlider.classList.add('selected')
+  })
+
+  watchedCheckbox.addEventListener('blur', () => {
+    watchedSlider.classList.remove('selected')
   })
 }
 

@@ -80,6 +80,10 @@ legend {
   color: white;
 }
 
+.selected {
+  outline: 2px solid white;
+}
+
 .movie-form button {
   align-self: center;
   padding: 5px 15px;
