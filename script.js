@@ -65,6 +65,8 @@ function addMovieToLibrary(movie) {
   watchedSlider.classList.add('slider', 'round')
   const bottomBorder = document.createElement('div')
   bottomBorder.classList.add('bottom-border')
+  const removeButton = document.createElement('button')
+  removeButton.classList.add('remove')
 
   heading.textContent = movie.title
   directorPrompt.textContent = 'Directed By:'
@@ -75,6 +77,7 @@ function addMovieToLibrary(movie) {
   year.textContent = movie.year
   watchedPrompt.textContent = 'Watched?'
   watchedCheckbox.checked = movie.watched
+  removeButton.textContent = 'X'
 
   cards.appendChild(card)
   card.appendChild(heading)
@@ -93,6 +96,8 @@ function addMovieToLibrary(movie) {
   watchedLabel.appendChild(watchedCheckbox)
   watchedLabel.appendChild(watchedSlider)
   card.appendChild(bottomBorder)
+  card.appendChild(removeButton)
+
 
   heading.contentEditable = true
   director.contentEditable = true
@@ -135,6 +140,7 @@ function addMovieToLibrary(movie) {
       library[movieKey].watched = !library[movieKey].watched
       watchedCheckbox.checked = library[movieKey].watched
       card.classList.toggle('watched')
+      removeButton.classList.toggle('remove-unwatched')
     }
   })
 
@@ -142,11 +148,17 @@ function addMovieToLibrary(movie) {
     library[movieKey].watched = !library[movieKey].watched
     watchedCheckbox.checked = library[movieKey].watched
     card.classList.toggle('watched') 
+    removeButton.classList.toggle('remove-unwatched')
     watchedSlider.classList.add('selected')
   })
 
   watchedCheckbox.addEventListener('blur', () => {
     watchedSlider.classList.remove('selected')
+  })
+
+  removeButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    cards.removeChild(card)
   })
 }
 
