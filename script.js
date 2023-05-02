@@ -1,14 +1,13 @@
-function Movie(title, director, runtime, year, watched = false) {
-  this.title = title;
-  this.runtime = runtime;
-  this.director = director;
-  this.year = year;
-  this.watched = watched;
+class Movie {
+  constructor(title, director, runtime, year, watched = false) {
+    this.title = title;
+    this.runtime = runtime;
+    this.director = director;
+    this.year = year;
+    this.watched = watched;
 
-  Movie.prototype.info = () =>
-    `${this.title} by ${this.director}, ${
-      this.runtime
-    } minutes, released ${year}, ${watched ? 'watched' : 'not watched yet'}`;
+    Movie.prototype.info = () => `${this.title} by $[this.director}, $[this.runtime}minutes, released${this.year}, ${watched ? 'watched' : 'not watched yet'}]]`
+  }
 }
 
 const library = {};
