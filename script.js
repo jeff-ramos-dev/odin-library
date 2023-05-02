@@ -11,6 +11,20 @@ function Movie(title, director, runtime, year, watched = false) {
     } minutes, released ${year}, ${watched ? 'watched' : 'not watched yet'}`;
 }
 
+class Noovie {
+  constructor(title, director, runtime, year, watched = false) {
+    this.title = title;
+    this.runtime = runtime;
+    this.director = director;
+    this.year = year;
+    this.watched = watched;
+
+    Noovie.prototype.info = () => `${this.title} by $[this.director}, $[this.runtime}minutes, released${this.year}, ${watched ? 'watched' : 'not watched yet'}]]`
+  }
+
+
+}
+
 const library = {};
 
 const movieForm = document.querySelector('.movie-form');
@@ -66,8 +80,12 @@ function addMovieToLibrary(movie) {
   const bottomBorder = document.createElement('div');
   bottomBorder.classList.add('bottom-border');
   const removeButton = document.createElement('button');
-  removeButton.classList.add('remove');
-
+  if (movie.watched) {
+    removeButton.classList.add('remove')
+  } else {
+    removeButton.classList.add('remove')
+    removeButton.classList.add('remove-unwatched')
+  }
   heading.textContent = movie.title;
   directorPrompt.textContent = 'Directed By:';
   director.textContent = movie.director;
