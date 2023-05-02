@@ -48,6 +48,8 @@ function addMovieToLibrary(movie) {
   runtimePrompt.classList.add('prompt');
   const runtime = document.createElement('p');
   runtime.classList.add('data');
+  const runtimeSuffix = document.createElement('span')
+  runtimeSuffix.classList.add('data')
   const yearDiv = document.createElement('div');
   yearDiv.classList.add('card-detail');
   const yearPrompt = document.createElement('p');
@@ -75,7 +77,8 @@ function addMovieToLibrary(movie) {
   directorPrompt.textContent = 'Directed By:';
   director.textContent = movie.director;
   runtimePrompt.textContent = 'Runtime:';
-  runtime.textContent = `${movie.runtime} min`;
+  runtime.textContent = `${movie.runtime}`;
+  runtimeSuffix.textContent = ' min'
   yearPrompt.textContent = 'Released:';
   year.textContent = movie.year;
   watchedPrompt.textContent = 'Watched?';
@@ -91,6 +94,7 @@ function addMovieToLibrary(movie) {
   details.appendChild(runtimeDiv);
   runtimeDiv.appendChild(runtimePrompt);
   runtimeDiv.appendChild(runtime);
+  runtime.appendChild(runtimeSuffix)
   details.appendChild(yearDiv);
   yearDiv.appendChild(yearPrompt);
   yearDiv.appendChild(year);
@@ -176,7 +180,7 @@ submit.addEventListener('click', (e) => {
   const newMovie = new Movie(
     movie.title.value ? movie.title.value : 'TITLE',
     movie.director.value ? movie.director.value : 'DIRECTOR',
-    movie.runtime.value ? `${movie.runtime.value} min` : 'RUNTIME',
+    movie.runtime.value ? `${movie.runtime.value}` : 'RUNTIME',
     movie.year.value ? movie.year.value : 'YEAR',
     movie.watched.checked
   );
