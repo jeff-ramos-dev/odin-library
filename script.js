@@ -11,20 +11,6 @@ function Movie(title, director, runtime, year, watched = false) {
     } minutes, released ${year}, ${watched ? 'watched' : 'not watched yet'}`;
 }
 
-class Noovie {
-  constructor(title, director, runtime, year, watched = false) {
-    this.title = title;
-    this.runtime = runtime;
-    this.director = director;
-    this.year = year;
-    this.watched = watched;
-
-    Noovie.prototype.info = () => `${this.title} by $[this.director}, $[this.runtime}minutes, released${this.year}, ${watched ? 'watched' : 'not watched yet'}]]`
-  }
-
-
-}
-
 const library = {};
 
 const movieForm = document.querySelector('.movie-form');
